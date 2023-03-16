@@ -16,7 +16,6 @@ class MainView: UIView {
     let startButton = UIButton(title: "Start", bgColor: .systemBlue, textColor: .white, font: ODFonts.avenirFont, cornerRadius: 12)
     let rulesButton = UIButton(title: "Rules of the game", bgColor: .black, textColor: .white, font: ODFonts.avenirFont, cornerRadius: 12)
     
-
     init() {
         super.init(frame: CGRect())
         setupViews()
@@ -25,7 +24,6 @@ class MainView: UIView {
     
     func setupViews() {
         gameLabel.textColor = .white
-        
         let tfArray = [wordTf,firstPlayerNameTf,secondPlayerNameTf]
         for tf in tfArray {
             tf.layer.cornerRadius = 12
@@ -38,8 +36,6 @@ class MainView: UIView {
         firstPlayerNameTf.attributedPlaceholder = pcForFirstTf
         let pcForSecondTf = NSAttributedString(string: "Second player",attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "colorForTf") as Any])
         secondPlayerNameTf.attributedPlaceholder = pcForSecondTf
-        
-        
     }
     
     func setupconstraints() {
@@ -49,7 +45,7 @@ class MainView: UIView {
         addSubview(stack)
         addSubview(startButton)
         addSubview(rulesButton)
-        
+
         Helper.tamicOff(views: [gameLabel,wordTf,stack,startButton,rulesButton])
         
         NSLayoutConstraint.activate([gameLabel.topAnchor.constraint(equalTo: topAnchor,constant: 80),
@@ -74,12 +70,7 @@ class MainView: UIView {
                                      rulesButton.heightAnchor.constraint(equalToConstant: 40)])
         
     }
-    
-    
-    
-    
-    
-    
+  
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

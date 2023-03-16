@@ -13,22 +13,16 @@ class GameCell: UITableViewCell {
     let importantOrNo = UILabel(text: "Word", font: ODFonts.avenirFont)
     let urgentOrNo = UILabel(text: "Score", font: ODFonts.avenirFont)
 
-    
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: GameCell.reuseId)
-        
+  
         backgroundColor = .black
         importantOrNo.textColor = .white
         urgentOrNo.textColor = .white
-
         addSubview(importantOrNo)
         addSubview(urgentOrNo)
         Helper.tamicOff(views: [importantOrNo,urgentOrNo])
-        
-      
-       
-        
+
         NSLayoutConstraint.activate([importantOrNo.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 12),
                                      importantOrNo.topAnchor.constraint(equalTo: topAnchor,constant:12),
                                      urgentOrNo.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -12),
@@ -36,10 +30,7 @@ class GameCell: UITableViewCell {
                                      importantOrNo.widthAnchor.constraint(equalToConstant: 200),
                                      importantOrNo.heightAnchor.constraint(equalToConstant: 30),
                                      urgentOrNo.widthAnchor.constraint(equalToConstant: 20),
-                                     urgentOrNo.heightAnchor.constraint(equalToConstant: 30)])
-        
-        
-        
+                                     urgentOrNo.heightAnchor.constraint(equalToConstant: 30)]) 
     }
     
     required init?(coder: NSCoder) {

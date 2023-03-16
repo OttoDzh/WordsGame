@@ -21,6 +21,7 @@ class GameView: UIView {
     let checkButton = UIButton(title: "Enter", bgColor: .white, textColor: .black, font: ODFonts.avenirFont, cornerRadius: 12)
     let table = UITableView()
     var countdownLabel = UILabel(text: "60", font: ODFonts.titleLabelFont)
+  
     init() {
         super.init(frame: CGRect())
         setupViews()
@@ -40,7 +41,6 @@ class GameView: UIView {
         secondPlayerPointLabel.textColor = .white
         wordTf.layer.cornerRadius = 15
         wordTf.textAlignment = .center
-        
         table.register(GameCell.self, forCellReuseIdentifier: GameCell.reuseId)
         table.backgroundColor = .black
         table.layer.cornerRadius = 15
@@ -49,14 +49,10 @@ class GameView: UIView {
         countdownLabel.textColor = .white
         let pcForWordTf = NSAttributedString(string: "Write a word",attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "colorForTf") as Any])
         wordTf.attributedPlaceholder = pcForWordTf
-        
-      
     }
     
     func setupconstraints() {
-        
         let viewStack = UIStackView(arrangedSubviews: [firstView,secondView], axis: .horizontal, spacing: 6)
-        
         addSubview(countdownLabel)
         addSubview(backButton)
         addSubview(bigWord)
@@ -107,17 +103,7 @@ class GameView: UIView {
                                      table.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 24),
                                      table.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -24),
                                      table.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -24)])
-        
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -13,11 +13,6 @@ class RulesVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.view = rulesView
-
     }
-    
-
-
 }

@@ -7,18 +7,14 @@
 
 import UIKit
 
-
-
 class MainViewController: UIViewController,UITextFieldDelegate {
      
     let mainView = MainView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.view = mainView
         addTargets()
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         mainView.addGestureRecognizer(tap)
         mainView.wordTf.delegate = self
@@ -29,12 +25,10 @@ class MainViewController: UIViewController,UITextFieldDelegate {
     @objc func hideKeyboard() {
         view.endEditing(true)
     }
-       
 
     func addTargets() {
         mainView.startButton.addTarget(self, action: #selector(startGame), for: .touchUpInside)
         mainView.rulesButton.addTarget(self, action: #selector(goToRulesVC), for: .touchUpInside)
-        
     }
   
     @objc func goToRulesVC() {
@@ -44,7 +38,6 @@ class MainViewController: UIViewController,UITextFieldDelegate {
     }
     
     @objc func startGame() {
-        
         guard mainView.wordTf.text!.count > 7 else {
             let alertController = UIAlertController(title: "Error!", message: "Minimum 8 letters", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ок", style: .default) {(action) in
@@ -53,12 +46,6 @@ class MainViewController: UIViewController,UITextFieldDelegate {
             self.present(alertController, animated: true)
             return
         }
-        
-        
-        
-        
-     
-        
         let vc = GameViewController(user1: User(name: "", score: 0), user2: User(name: "", score: 0))
         vc.modalPresentationStyle = .fullScreen
         vc.gameView.bigWord.text = mainView.wordTf.text!

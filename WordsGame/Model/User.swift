@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class User {
     let name : String
     var score: Int = 0

@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 class GameViewController: UIViewController,UITextFieldDelegate {
     
     let gameView = GameView()
@@ -19,12 +17,12 @@ class GameViewController: UIViewController,UITextFieldDelegate {
     var words = [String]()
     var isFirstUser = true
     
-    
     init(user1:User,user2:User) {
         firstUser = user1
         secondUser = user2
         super.init(nibName: nil, bundle: nil)
     }
+  
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -40,7 +38,6 @@ class GameViewController: UIViewController,UITextFieldDelegate {
         gameView.firstView.layer.borderWidth = 5
         gameView.firstView.layer.borderColor = UIColor.red.cgColor
         setupTimer()
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         gameView.addGestureRecognizer(tap)
         gameView.wordTf.delegate = self
@@ -53,16 +50,14 @@ class GameViewController: UIViewController,UITextFieldDelegate {
     @objc func countDown() {
         countDow -= 1
         gameView.countdownLabel.text = "\(countDow)"
-        
         if countDow <= 10 && countDow >= 1 {
             gameView.countdownLabel.textColor = .red
-        }
-        else  if countDow <= 0 {
+        } else  if countDow <= 0 {
             gameView.countdownLabel.text = "0"
             timer?.invalidate()
         }
     }
-    
+  
     @objc func hideKeyboard() {
         view.endEditing(true)
     }
@@ -88,12 +83,10 @@ class GameViewController: UIViewController,UITextFieldDelegate {
         
         var strChars = wordToChars(word: gameView.bigWord.text!)
         let wordChars = wordToChars(word: word)
-        
         var result = ""
         for char in wordChars {
             if strChars.contains(char) {
                 result.append(char)
-                
                 var i = 0
                 while strChars[i] != char {
                     i += 1
@@ -144,35 +137,30 @@ class GameViewController: UIViewController,UITextFieldDelegate {
             }
             alertController.addAction(action)
             self.present(alertController, animated: true)
-            
         }
         return result.count
     }
-    
+  
     func addTargets() {
         gameView.checkButton.addTarget(self, action: #selector(checkButtonTapeed), for: .touchUpInside)
         gameView.backButton.addTarget(self, action: #selector(dismissSelf), for: .touchUpInside)
     }
     
     @objc func checkButtonTapeed() {
-        
         guard let text = gameView.wordTf.text else {
             return
         }
         guard gameView.wordTf.text != "" else {
             return
         }
+        print(checkWord(word: text))
         countDow = 60
         gameView.countdownLabel.textColor = .white
         gameView.countdownLabel.text = "60"
         timer?.invalidate()
         setupTimer()
-        
-        print(checkWord(word: text))
     }
-    
-    
-    
+
     @objc func dismissSelf() {
         let alertController = UIAlertController(title: "Quit?", message: "Are you sure?", preferredStyle: .alert)
         let action = UIAlertAction(title: "Yes", style: .destructive) {(action) in
@@ -188,13 +176,15 @@ class GameViewController: UIViewController,UITextFieldDelegate {
         self.view.endEditing(true)
         return false
     }
+    
 }
 
 extension GameViewController: UITableViewDelegate,UITableViewDataSource {
+  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         words.count
     }
-    
+  
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: GameCell.reuseId, for: indexPath) as! GameCell
         cell.importantOrNo.text =  words[indexPath.row]
